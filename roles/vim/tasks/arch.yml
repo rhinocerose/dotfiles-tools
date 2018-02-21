@@ -1,0 +1,11 @@
+---
+- name: Install neovim for arch
+  package: name={{ item }} state=latest
+  with_items:
+    - neovim
+
+- name: Install neovim dependencies for arch
+  package: name={{ item }} state=latest
+  with_items:
+    - clang
+    - ctags

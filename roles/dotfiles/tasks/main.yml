@@ -1,0 +1,113 @@
+---
+
+- name: Install dotfile dependencies using sudo
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git
+  become: yes
+  become_method: sudo
+
+- name: Clone Dotfiles repo
+  git:
+    repo: 'https://github.com/BananaFett/Dotfiles.git'
+    dest: ~/.dotfiles
+    update: yes
+    recursive: yes
+
+- name: Clone secrets repo
+  git:
+    repo: "{{ secrets_repo_url }}"
+    dest: "~/.dotfiles/{{ secrets_config }}"
+    update: yes
+    recursive: yes
+
+- name: Update submodules
+  command: git submodule update --init --recursive
+  args:
+    chdir: ~/.dotfiles
+
+- import_tasks: symlinks.yml
+  become: no
+  vars:
+    srcBase: "{{ lookup('env', 'HOME') }}"
+    dstBase: "{{ lookup('env', 'HOME') }}"
+
+- import_tasks: symlinks.yml
+  become: yes
+  become_user: root
+  become_method: sudo
+  vars:
+    srcBase: "{{ lookup('env', 'HOME') }}"
+    dstBase: "/root"
+
+- name: Link root based files
+  file:
+    src: "~/.dotfiles/{{ item.src }}"
+    dest: "{{ item.dst }}"
+    state: link
+    force: yes
+  with_items:
+    - { src: "fonts-local.conf", dst: "/etc/fonts/local.conf" }
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Install fzf
+  shell: |
+    echo "yyn" | ~/.dotfiles/fzf/install
+
+- name: Check if Font-Awesome font is installed
+  stat:
+    path: /usr/share/fonts/opentype/FontAwesome5FreeSolid-900.otf
+  register: stat_result_awesome
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Create Font-Awesome folder
+  file:
+    state: directory
+    path: /usr/share/fonts/opentype
+    recurse: yes
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Copy Font-Awesome font
+  copy:
+    src: "~/.dotfiles/fonts/Font-Awesome/use-on-desktop/{{ item.src }}"
+    dest: "/usr/share/fonts/opentype/{{ item.dst }}"
+  with_items:
+    - { src: "Font Awesome 5 Brands-Regular-400.otf", dst: "FontAwesome5BrandsRegular-400.otf" }
+    - { src: "Font Awesome 5 Free-Regular-400.otf", dst: "FontAwesome5FreeRegular-400.otf" }
+    - { src: "Font Awesome 5 Free-Solid-900.otf", dst: "FontAwesome5FreeSolid-900.otf" }
+  when: stat_result_awesome.stat.exists == False
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Create Dina folder
+  file:
+    state: directory
+    path: /usr/share/fonts/misc/Dina
+    recurse: yes
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Copy Dina font
+  copy:
+    src: "~/.dotfiles/fonts/Dina"
+    dest: /usr/share/fonts/misc
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: Recreate fonts cache
+  shell: |
+    fc-cache -fv
+  become: yes
+  become_user: root
+  become_method: sudo

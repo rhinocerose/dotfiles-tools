@@ -1,0 +1,64 @@
+---
+- name: Make sure oh-my-zsh is cloned
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+    update=no
+    force=no
+
+- name: Remove old custom folder from oh-my-zsh
+  file:
+    state: absent
+    path: ~/.oh-my-zsh/custom
+
+- name: Make sure the required folders are present
+  file:
+    state: directory
+    path: "{{ item }}"
+    recurse: yes
+  with_items:
+    - "{{ dstBase }}/.vim"
+    - "{{ dstBase }}/.vim/bundle"
+    - "{{ dstBase }}/.config/gconf/apps"
+    - "{{ dstBase }}/.config/sublime-text-3/Packages"
+    - "{{ dstBase }}/.ssh"
+    - "{{ dstBase }}/.i3"
+
+- name: Create Symlinks for public files
+  file:
+    src: "{{ srcBase }}/.dotfiles/{{ item.src }}"
+    dest: "{{ dstBase }}/{{ item.dst }}"
+    state: link
+    force: yes
+  with_items:
+    - { src: "aliases", dst: ".aliases" }
+    - { src: "bash_profile", dst: ".bash_profile" }
+    - { src: "bashrc", dst: ".bashrc" }
+    - { src: "bindings", dst: ".bindings" }
+    - { src: "dockerfunc", dst: ".dockerfunc" }
+    - { src: "dunst", dst: ".config/dunst" }
+    - { src: "exports", dst: ".exports" }
+    - { src: "fzf", dst: ".fzf" }
+    - { src: "fzf.zsh", dst: ".fzf.zsh" }
+    - { src: "gitconfig", dst: ".gitconfig" }
+    - { src: "gitignore", dst: ".gitignore" }
+    - { src: "guake", dst: ".config/gconf/apps/guake" }
+    - { src: "i3/config", dst: ".config/i3" }
+    - { src: "i3/config", dst: ".i3/config" }
+    - { src: "i3/polybar", dst: ".i3/polybar" }
+    - { src: "i3/scripts", dst: ".i3/scripts" }
+    - { src: "inputrc", dst: ".inputrc" }
+    - { src: "nanorc", dst: ".nanorc" }
+    - { src: "nanorc-folder", dst: ".nano" }
+    - { src: "nvim", dst: ".config/nvim" }
+    - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
+    - { src: "termite", dst: ".config/termite" }
+    - { src: "tmux.conf", dst: ".tmux.conf" }
+    - { src: "vim/colors", dst: ".vim/colors" }
+    - { src: "vim/snippets", dst: ".vim/snippets" }
+    - { src: "vim-vundle", dst: ".vim/bundle/Vundle.vim" }
+    - { src: "vimrc", dst: ".vimrc" }
+    - { src: "xmodmap", dst: ".Xmodmap" }
+    - { src: "zshrc", dst: ".zshrc" }
+
+- include_tasks: "{{ srcBase }}/.dotfiles/{{ secrets_config }}/tasks.yml"

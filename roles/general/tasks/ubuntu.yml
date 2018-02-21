@@ -1,0 +1,65 @@
+---
+
+- name: Install ubuntu dependencies via apt-get
+  package: name={{ item }} state=latest
+  with_items:
+    - chromium-browser
+    - chromium-browser-l10n
+    - chromium-codecs-ffmpeg
+    - fonts-hack-ttf
+    - i3
+    - network-manager-gnome
+    - software-properties-common
+    - update-notifier
+    - x11-utils
+    - x11-xserver-utils
+    - xbacklight
+    - zsh-common
+
+- name: Install polybar for ubuntu
+  shell: |
+    wget -q -O - http://archive.getdeb.net/getdeb-archive.key | apt-key add - && \
+    sh -c 'echo "deb http://archive.getdeb.net/ubuntu xenial-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list' && \
+    apt-get update && \
+    apt-get -y install polybar
+
+
+- name: Install termite
+  shell: |
+    if ! which termite; then
+    mkdir -p /tmp/termite-temp && cd /tmp/termite-temp && \
+    git clone --recursive https://github.com/thestinger/termite.git && \
+    git clone https://github.com/thestinger/vte-ng.git && \
+    sudo apt-get install -y \
+      g++ \
+      libgtk-3-dev \
+      gtk-doc-tools \
+      gnutls-bin \
+      valac \
+      intltool \
+      libpcre2-dev \
+      libglib3.0-cil-dev \
+      libgnutls28-dev \
+      libgirepository1.0-dev \
+      libxml2-utils \
+      gperf && \
+    echo export LIBRARY_PATH="/usr/include/gtk-3.0:$LIBRARY_PATH" && \
+    cd vte-ng && ./autogen.sh && make && make install && \
+    cd ../termite && make && make install && \
+    ldconfig && \
+    mkdir -p /lib/terminfo/x && \
+    ln -s /usr/local/share/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termite && \
+    rm -rf /tmp/termite-temp
+    fi
+
+- name: Install playerctl
+  shell: |
+    cd /tmp
+    curl https://api.github.com/repos/acrisci/playerctl/releases/latest | \
+      grep "browser_download_url" | \
+      grep "amd64.deb" | \
+      cut -d : -f 2,3 | \
+      tr -d \" | \
+      wget -O /tmp/playerctl.deb -i - && \
+    dpkg -i /tmp/playerctl.deb && \
+    rm /tmp/playerctl.deb

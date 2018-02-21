@@ -1,0 +1,62 @@
+---
+
+- name: Install general dependencies via package manager
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - arandr
+    - blueman
+    - cmake
+    - dunst
+    - feh
+    - git
+    - i3-wm
+    - lxappearance
+    - nautilus
+    - rofi
+    - scrot
+    - wicd-gtk
+    - xss-lock
+    - zsh
+
+- name: Installing python (Arch)
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python2
+    - python2-pip
+    - python
+    - python-pip
+  when: ansible_distribution == "Archlinux"
+
+- name: Installing python (Debian/Ubuntu)
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python2.7
+    - python-pip
+    - python3
+    - python3-pip
+  when: ansible_distribution != "Archlinux"
+
+- name: Install pip2 dependencies
+  pip:
+    name: i3ipc
+    executable: pip2
+
+- name: Install pip3 dependencies
+  pip:
+    name: i3ipc
+    executable: pip3
+
+- include_tasks: arch.yml
+  when: ansible_distribution == "Archlinux"
+
+- include_tasks: debian.yml
+  when: "ansible_distribution == 'Debian' or 'Kali' in ansible_distribution"
+
+- include_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"

@@ -1,0 +1,24 @@
+---
+
+- name: Install arch dependencies via pacman
+  package: name={{ item }} state=latest
+  with_items:
+    - chromium
+    - termite
+    - termite-terminfo
+    - xorg-xbacklight
+    - xorg-xev
+    - xorg-xprop
+    - xorg-xrandr
+
+- name: Install trizen
+  shell: |
+    yaourt -S --noconfirm --needed trizen
+
+- name: Install arch dependencies via trizen
+  shell: |
+    trizen -S --noconfirm --needed \
+      cower \
+      network-manager-applet \
+      polybar \
+      ttf-hack \
