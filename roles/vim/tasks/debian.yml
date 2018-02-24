@@ -1,10 +1,6 @@
 - name: Install neovim for debian
   package: name={{ item }} state=latest
   with_items:
-    - neovim
-
-- name: Install neovim dependencies for debian
-  package: name={{ item }} state=latest
-  with_items:
     - clang
     - exuberant-ctags
+    - neovim

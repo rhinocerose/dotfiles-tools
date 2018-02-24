@@ -11,7 +11,7 @@
 
 - name: Clone Dotfiles repo
   git:
-    repo: 'https://github.com/BananaFett/Dotfiles.git'
+    repo: 'https://github.com/0xBANANA/Dotfiles.git'
     dest: ~/.dotfiles
     update: yes
     recursive: yes

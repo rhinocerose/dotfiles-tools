@@ -4,8 +4,7 @@
   shell: |
     sudo add-apt-repository ppa:neovim-ppa/stable && \
     sudo apt-get update && \
-    sudo apt-get -y install \
-    neovim
+    sudo apt-get -y install neovim
 
 - name: Install neovim dependencies for ubuntu
   package: name={{ item }} state=latest

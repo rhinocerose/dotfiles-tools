@@ -7,6 +7,7 @@
     - chromium-browser-l10n
     - chromium-codecs-ffmpeg
     - fonts-hack-ttf
+    - gvfs-bin
     - i3
     - network-manager-gnome
     - software-properties-common

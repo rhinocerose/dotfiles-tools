@@ -1,0 +1,19 @@
+---
+
+- name: Install trizen
+  shell: |
+    yaourt -S --noconfirm --needed trizen
+
+- name: Install arch dependencies via trizen
+  shell: |
+    trizen -S --noconfirm --needed \
+        clion \
+        dspdfviewer \
+        etcher \
+        google-chrome \
+        masterpdfeditor \
+        pdftk \
+        pycharm-professional \
+        rambox-bin \
+        spotify \
+        wxhexeditor-git

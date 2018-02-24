@@ -17,8 +17,3 @@ deploy: ## Run all roles
 
 update-dotfiles: ## Update the dotfiles
 	ansible-playbook --ask-become-pass -i "localhost," -c local roles/dotfiles/main.yml
-
-update-pip: ## Update all pip packages
-	sudo pip list --format=legacy --outdated | cut -d' ' -f1 | xargs sudo pip install --upgrade; \
-	sudo pip2 list --format=legacy --outdated | cut -d' ' -f1 | xargs sudo pip2 install --upgrade; \
-	sudo pip3 list --format=legacy --outdated | cut -d' ' -f1 | xargs sudo pip3 install --upgrade

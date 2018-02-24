@@ -6,6 +6,7 @@
     - chromium
     - cmake
     - cmake-data
+    - gvfs-bin
     - fonts-hack-ttf
     - i3
     - libasound2-dev
