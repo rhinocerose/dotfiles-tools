@@ -32,5 +32,6 @@
   shell: |
     echo "yyn" | ~/.dotfiles/fzf/install
 
-- include_role:
-  name: vim
+- name: Call vim role
+  include_role:
+    name: vim
