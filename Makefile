@@ -16,10 +16,10 @@ deploy: ## Run all roles
 	ansible-playbook --ask-become-pass -i "localhost," -c local deploy.yml
 
 deploy-server: ## Run the server role and all included roles
-	ansible-playbook --ask-become-pass -i "localhost," -c local roles/server/tasks/main.yml
+	ansible-playbook --ask-become-pass -i "localhost," -c local deployServer.yml
 
 update-dotfiles: ## Update the dotfiles
-	ansible-playbook --ask-become-pass -i "localhost," -c local roles/dotfiles/tasks/main.yml
+	ansible-playbook --ask-become-pass -i "localhost," -c local updateDotfiles.yml
 
 ansible: ## Install ansible
 	if which pacman; then \
