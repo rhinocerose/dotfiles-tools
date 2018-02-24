@@ -15,5 +15,8 @@ help: ## This help
 deploy: ## Run all roles
 	ansible-playbook --ask-become-pass -i "localhost," -c local deploy.yml
 
+deploy-server: ## Run the server role and all included roles
+	ansible-playbook --ask-become-pass -i "localhost," -c local roles/server/tasks/main.yml
+
 update-dotfiles: ## Update the dotfiles
-	ansible-playbook --ask-become-pass -i "localhost," -c local roles/dotfiles/main.yml
+	ansible-playbook --ask-become-pass -i "localhost," -c local roles/dotfiles/tasks/main.yml

@@ -1,0 +1,49 @@
+---
+- name: Make sure oh-my-zsh is cloned
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+    update=no
+    force=no
+
+- name: Remove old custom folder from oh-my-zsh
+  file:
+    state: absent
+    path: ~/.oh-my-zsh/custom
+
+- name: Make sure the required folders are present
+  file:
+    state: directory
+    path: "{{ item }}"
+    recurse: yes
+  with_items:
+    - "{{ dstBase }}/.vim"
+    - "{{ dstBase }}/.vim/bundle"
+
+- name: Create Symlinks for public files
+  file:
+    src: "{{ srcBase }}/.dotfiles/{{ item.src }}"
+    dest: "{{ dstBase }}/{{ item.dst }}"
+    state: link
+    force: yes
+  with_items:
+    - { src: "aliases", dst: ".aliases" }
+    - { src: "bash_profile", dst: ".bash_profile" }
+    - { src: "bashrc", dst: ".bashrc" }
+    - { src: "bindings", dst: ".bindings" }
+    - { src: "dockerfunc", dst: ".dockerfunc" }
+    - { src: "exports", dst: ".exports" }
+    - { src: "fzf", dst: ".fzf" }
+    - { src: "fzf.zsh", dst: ".fzf.zsh" }
+    - { src: "gitconfig", dst: ".gitconfig" }
+    - { src: "gitignore", dst: ".gitignore" }
+    - { src: "inputrc", dst: ".inputrc" }
+    - { src: "nanorc", dst: ".nanorc" }
+    - { src: "nanorc-folder", dst: ".nano" }
+    - { src: "nvim", dst: ".config/nvim" }
+    - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
+    - { src: "vim/colors", dst: ".vim/colors" }
+    - { src: "vim/snippets", dst: ".vim/snippets" }
+    - { src: "vim-vundle", dst: ".vim/bundle/Vundle.vim" }
+    - { src: "vimrc", dst: ".vimrc" }
+    - { src: "zshrc", dst: ".zshrc" }

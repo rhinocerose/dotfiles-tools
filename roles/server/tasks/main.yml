@@ -1,0 +1,36 @@
+---
+
+- name: Install general dependencies via package manager
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git
+    - zsh
+
+- include_tasks: ubuntu-server.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Clone Dotfiles repo
+  git:
+    repo: 'https://github.com/0xBANANA/Dotfiles.git'
+    dest: ~/.dotfiles
+    update: yes
+    recursive: yes
+
+- name: Update submodules
+  command: git submodule update --init --recursive
+  args:
+    chdir: ~/.dotfiles
+
+- import_tasks: symlinks-server.yml
+  vars:
+    srcBase: "/root"
+    dstBase: "/root"
+
+- name: Install fzf
+  shell: |
+    echo "yyn" | ~/.dotfiles/fzf/install
+
+- include_role:
+  name: vim
