@@ -40,7 +40,6 @@
     - { src: "exports", dst: ".exports" }
     - { src: "fzf", dst: ".fzf" }
     - { src: "fzf.zsh", dst: ".fzf.zsh" }
-    - { src: "gitconfig", dst: ".gitconfig" }
     - { src: "gitignore", dst: ".gitignore" }
     - { src: "guake", dst: ".config/gconf/apps/guake" }
     - { src: "i3/config", dst: ".config/i3" }
