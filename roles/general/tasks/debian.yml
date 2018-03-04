@@ -25,6 +25,7 @@
     - network-manager-gnome
     - pkg-config
     - python-xcbgen
+    - python-pygments
     - update-notifier
     - x11-utils
     - x11-xserver-utils

@@ -10,6 +10,7 @@
     - gvfs-bin
     - i3
     - network-manager-gnome
+    - python-pygments
     - software-properties-common
     - update-notifier
     - x11-utils
