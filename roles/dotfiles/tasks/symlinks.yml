@@ -23,6 +23,7 @@
     - "{{ dstBase }}/.config/sublime-text-3/Packages"
     - "{{ dstBase }}/.ssh"
     - "{{ dstBase }}/.i3"
+    - "{{ dstBase }}/.config/nvim"
 
 - name: Create Symlinks for public files
   file:
@@ -49,7 +50,7 @@
     - { src: "inputrc", dst: ".inputrc" }
     - { src: "nanorc", dst: ".nanorc" }
     - { src: "nanorc-folder", dst: ".nano" }
-    - { src: "nvim", dst: ".config/nvim" }
+    - { src: "nvim/init.vim", dst: ".config/nvim/init.vim" }
     - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
     - { src: "termite", dst: ".config/termite" }
     - { src: "tmux.conf", dst: ".tmux.conf" }
@@ -61,3 +62,4 @@
     - { src: "zshrc", dst: ".zshrc" }
 
 - include_tasks: "{{ srcBase }}/.dotfiles/{{ secrets_config }}/tasks.yml"
+- include_tasks: "{{ srcBase }}/.dotfiles/shared-secrets/tasks.yml"

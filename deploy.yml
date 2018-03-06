@@ -12,6 +12,10 @@
       prompt: "Which secrets repo to use? e.g. https://gogs.yolo/user/secrets-yolo.git"
       private: no
 
+    - name: "shared_repo_url"
+      prompt: "Which shared repo to use? e.g. https://gogs.yolo/user/secrets-shared.git"
+      private: no
+
   roles:
     - { role: dotfiles }
     - { role: general, become: yes }

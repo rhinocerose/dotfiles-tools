@@ -16,10 +16,17 @@
     update: yes
     recursive: yes
 
-- name: Clone secrets repo
+- name: Clone machine specific secrets repo
   git:
     repo: "{{ secrets_repo_url }}"
     dest: "~/.dotfiles/{{ secrets_config }}"
+    update: yes
+    recursive: yes
+
+- name: Clone shared secrets repo
+  git:
+    repo: "{{ shared_repo_url }}"
+    dest: "~/.dotfiles/shared-secrets"
     update: yes
     recursive: yes
 

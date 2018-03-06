@@ -2,7 +2,7 @@
 
 - name: Install pip2 dependencies for neovim
   pip:
-    name: neovim msgpack-python jedi ansible-lint autopep8
+    name: neovim msgpack-python jedi ansible-lint autopep8 unidecode
     executable: pip2
 
 - name: Install pip3 dependencies for neovim
