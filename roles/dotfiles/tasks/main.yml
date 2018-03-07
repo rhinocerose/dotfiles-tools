@@ -5,7 +5,10 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - curl
+    - fontconfig
     - git
+    - wget
   become: yes
   become_method: sudo
 

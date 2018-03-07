@@ -17,13 +17,14 @@
     path: "{{ item }}"
     recurse: yes
   with_items:
+    - "/etc/fonts"
+    - "{{ dstBase }}/.config/gconf/apps"
+    - "{{ dstBase }}/.config/nvim"
+    - "{{ dstBase }}/.config/sublime-text-3/Packages"
+    - "{{ dstBase }}/.i3"
+    - "{{ dstBase }}/.ssh"
     - "{{ dstBase }}/.vim"
     - "{{ dstBase }}/.vim/bundle"
-    - "{{ dstBase }}/.config/gconf/apps"
-    - "{{ dstBase }}/.config/sublime-text-3/Packages"
-    - "{{ dstBase }}/.ssh"
-    - "{{ dstBase }}/.i3"
-    - "{{ dstBase }}/.config/nvim"
 
 - name: Create Symlinks for public files
   file:

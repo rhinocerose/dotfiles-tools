@@ -1,12 +1,15 @@
-sudo: required
-dist: xenial
+dist: trusty
 
-before_script:
-  - sudo apt update && sudo apt -y install make
+services:
+  - docker
+
+env:
+  - BUILD_CFG=ubuntu
+  # - BUILD_CFG=ubuntu-multiuser
+  - BUILD_CFG=debian
 
 script:
-  - sudo make ansible
-  - sudo make test
+  - docker run --rm -v $PWD:/tmp/Dotfile-tools $BUILD_CFG:latest bash -c "apt update && apt -y install sudo make && cd /tmp/Dotfile-tools && make ansible && make test"
 
 after_success:
   - curl -iX GET "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHATID&text=Dotfile-tools OK" 2>&1 >/dev/null
