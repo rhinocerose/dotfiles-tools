@@ -22,6 +22,7 @@
     dest: "~/.dotfiles/{{ secrets_config }}"
     update: yes
     recursive: yes
+  when: secrets_repo_url is defined
 
 - name: Clone shared secrets repo
   git:
@@ -29,6 +30,7 @@
     dest: "~/.dotfiles/shared-secrets"
     update: yes
     recursive: yes
+  when: shared_repo_url is defined
 
 - name: Update submodules
   command: git submodule update --init --recursive

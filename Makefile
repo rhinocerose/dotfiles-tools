@@ -34,3 +34,7 @@ ansible: ## Install ansible
 		sudo apt-get update && \
 		sudo apt-get -y install ansible; \
 	fi
+
+
+test: ## Perform travis tests
+	ansible-playbook -i "localhost," -c local .deployTest.yml

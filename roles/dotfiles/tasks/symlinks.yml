@@ -1,15 +1,15 @@
 ---
 - name: Make sure oh-my-zsh is cloned
   git:
-    repo=https://github.com/robbyrussell/oh-my-zsh
-    dest=~/.oh-my-zsh
-    update=no
-    force=no
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: "{{ dstBase }}/.oh-my-zsh"
+    update: no
+    force: no
 
 - name: Remove old custom folder from oh-my-zsh
   file:
     state: absent
-    path: ~/.oh-my-zsh/custom
+    path: "{{ dstBase }}/.oh-my-zsh/custom"
 
 - name: Make sure the required folders are present
   file:
@@ -62,4 +62,7 @@
     - { src: "zshrc", dst: ".zshrc" }
 
 - include_tasks: "{{ srcBase }}/.dotfiles/{{ secrets_config }}/tasks.yml"
+  when: secrets_config is defined
+
 - include_tasks: "{{ srcBase }}/.dotfiles/shared-secrets/tasks.yml"
+  when: shared_repo_url is defined
