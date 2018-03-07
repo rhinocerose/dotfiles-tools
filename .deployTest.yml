@@ -1,0 +1,9 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+
+  roles:
+    - { role: dotfiles }
+    - { role: general, become: yes }
+    - { role: sublime, become: yes }
+    - { role: vim, become: yes }
