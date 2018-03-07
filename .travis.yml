@@ -9,7 +9,7 @@ env:
   - BUILD_CFG=debian
 
 script:
-  - docker run --rm -v $PWD:/tmp/Dotfile-tools $BUILD_CFG:latest bash -c "apt update && apt -y install sudo make && cd /tmp/Dotfile-tools && make ansible && make test"
+  - docker run --rm -v $PWD:/tmp/Dotfile-tools $BUILD_CFG:latest bash -c "apt update && apt -y install sudo make gnupg && cd /tmp/Dotfile-tools && make ansible && make test"
 
 after_success:
   - curl -iX GET "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHATID&text=Dotfile-tools OK" 2>&1 >/dev/null
