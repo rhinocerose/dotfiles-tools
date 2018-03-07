@@ -5,11 +5,16 @@ services:
 
 env:
   - BUILD_CFG=ubuntu
-  # - BUILD_CFG=ubuntu-multiuser
+  - BUILD_CFG=ubuntu-multiuser
   - BUILD_CFG=debian
 
 script:
-  - docker run --rm -v $PWD:/tmp/Dotfile-tools $BUILD_CFG:latest bash -c "apt update && apt -y install sudo make gnupg && cd /tmp/Dotfile-tools && make ansible && make test"
+  - |
+     if [ "$BUILD_CFG" == "ubuntu-multiuser" ]; then
+         docker run --rm -v $PWD:/tmp/Dotfile-tools ubuntu:latest bash -c "useradd -ms /bin/bash joe && usermod -aG sudo joe && apt update && apt -y install sudo make && echo 'joe ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && su joe -c 'cd /tmp/Dotfile-tools && sudo make ansible' && su joe -c 'cd /tmp/Dotfile-tools && sudo make test'"
+     else
+         docker run --rm -v $PWD:/tmp/Dotfile-tools $BUILD_CFG:latest bash -c "apt update && apt -y install sudo make gnupg && cd /tmp/Dotfile-tools && make ansible && make test"
+     fi
 
 after_success:
   - curl -iX GET "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHATID&text=Dotfile-tools OK" 2>&1 >/dev/null
