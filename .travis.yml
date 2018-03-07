@@ -1,0 +1,15 @@
+sudo: required
+dist: xenial
+
+before_script:
+  - sudo apt update && sudo apt -y install make
+
+script:
+  - sudo make ansible
+  - sudo make test
+
+after_success:
+  - curl -iX GET "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHATID&text=Dotfile-tools OK" 2>&1 >/dev/null
+
+after_failure:
+  - curl -iX GET "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHATID&text=Dotfile-tools failed" 2>&1 >/dev/null
