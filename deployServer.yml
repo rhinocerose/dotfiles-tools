@@ -2,5 +2,10 @@
 - hosts: 127.0.0.1
   connection: local
 
+  vars_prompt:
+    - name: "shared_repo_url"
+      prompt: "Which shared repo to use? e.g. https://gogs.yolo/user/secrets-shared.git"
+      private: no
+
   roles:
     - { role: server }

@@ -18,6 +18,13 @@
     update: yes
     recursive: yes
 
+- name: Clone shared secrets repo
+  git:
+    repo: "{{ shared_repo_url }}"
+    dest: "~/.dotfiles/shared-secrets"
+    update: yes
+    recursive: yes
+
 - name: Update submodules
   command: git submodule update --init --recursive
   args:

@@ -19,6 +19,7 @@
   with_items:
     - "{{ dstBase }}/.vim"
     - "{{ dstBase }}/.vim/bundle"
+    - "{{ dstBase }}/.config/nvim"
 
 - name: Create Symlinks for public files
   file:
@@ -40,10 +41,12 @@
     - { src: "inputrc", dst: ".inputrc" }
     - { src: "nanorc", dst: ".nanorc" }
     - { src: "nanorc-folder", dst: ".nano" }
-    - { src: "nvim", dst: ".config/nvim" }
+    - { src: "nvim/init.vim", dst: ".config/nvim/init.vim" }
     - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
     - { src: "vim/colors", dst: ".vim/colors" }
     - { src: "vim/snippets", dst: ".vim/snippets" }
     - { src: "vim-vundle", dst: ".vim/bundle/Vundle.vim" }
     - { src: "vimrc", dst: ".vimrc" }
     - { src: "zshrc", dst: ".zshrc" }
+
+- include_tasks: "{{ srcBase }}/.dotfiles/shared-secrets/tasks.yml"
