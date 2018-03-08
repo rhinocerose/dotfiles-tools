@@ -23,7 +23,7 @@ update-dotfiles: ## Update the dotfiles
 
 ansible: ## Install ansible
 	if which pacman; then \
-		sudo pacman -S ansible; \
+		sudo pacman --noconfirm -S ansible; \
 	elif which apt-add-repository; then \
 		sudo apt-add-repository -y ppa:ansible/ansible && \
 		sudo apt-get update && \

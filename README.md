@@ -1,7 +1,7 @@
 # Dotfile-tools
 Ansible project to install my dotfiles and dependencies.
 
-[![Build Status](https://travis-ci.org/three0nef0ur/Dotfile-tools.png?branch=master)](https://travis-ci.org/three0nef0ur/Dotfile-tools)
+[![Build Status](https://travis-ci.org/ps1337/Dotfile-tools.png?branch=master)](https://travis-ci.org/ps1337/Dotfile-tools)
 
 # Features
 - Aimed to work on Arch, Debian (including Kali) and Ubuntu

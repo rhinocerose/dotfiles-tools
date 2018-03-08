@@ -4,56 +4,71 @@ services:
   - docker
 
 env:
+  - BUILD_CFG=arch
   - BUILD_CFG=ubuntu
   - BUILD_CFG=ubuntu-multiuser
   - BUILD_CFG=debian
 
 script:
   - |
-     if [ "$BUILD_CFG" == "ubuntu-multiuser" ]; then
-         docker run \
-             --rm \
-             -v $PWD:/tmp/Dotfile-tools \
-             ubuntu:latest \
-             bash -c "useradd -ms /bin/bash joe && \
-                      usermod -aG sudo joe && \
-                      apt update && \
-                      apt -y install \
-                          sudo \
-                          make && \
-                      echo 'joe ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
-                      su joe -c 'cd /tmp/Dotfile-tools && \
-                                 sudo make ansible' && \
-                      su joe -c 'cd /tmp/Dotfile-tools && \
-                                 sudo make test'"
+    if [ "$BUILD_CFG" == "ubuntu-multiuser" ]; then
+        docker run \
+            --rm \
+            -v $PWD:/tmp/Dotfile-tools \
+            ubuntu:latest \
+            bash -c "useradd -ms /bin/bash joe && \
+                     usermod -aG sudo joe && \
+                     apt update && \
+                     apt -y install \
+                         sudo \
+                         make && \
+                     echo 'joe ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+                     su joe -c 'cd /tmp/Dotfile-tools && \
+                                sudo make ansible' && \
+                     su joe -c 'cd /tmp/Dotfile-tools && \
+                                sudo make test'"
 
-      elif [ "$BUILD_CFG" == "ubuntu" ]; then
-         docker run \
-             --rm \
-             -v $PWD:/tmp/Dotfile-tools \
-             ubuntu:latest \
-             bash -c "apt update && \
-                      apt -y install \
-                          sudo \
-                          make && \
-                      cd /tmp/Dotfile-tools && \
-                      make ansible && \
-                      make test"
+   elif [ "$BUILD_CFG" == "ubuntu" ]; then
+        docker run \
+            --rm \
+            -v $PWD:/tmp/Dotfile-tools \
+            ubuntu:latest \
+            bash -c "apt update && \
+                     apt -y install \
+                         sudo \
+                         make && \
+                     cd /tmp/Dotfile-tools && \
+                     make ansible && \
+                     make test"
 
-      elif [ "$BUILD_CFG" == "debian" ]; then
-         docker run \
-             --rm \
-             -v $PWD:/tmp/Dotfile-tools \
-             debian:latest \
-             bash -c "apt update && \
-                      apt -y install \
-                          sudo \
-                          make \
-                          gnupg && \
-                      cd /tmp/Dotfile-tools && \
-                      make ansible && \
-                      make test"
-     fi
+   elif [ "$BUILD_CFG" == "debian" ]; then
+        docker run \
+            --rm \
+            -v $PWD:/tmp/Dotfile-tools \
+            debian:latest \
+            bash -c "apt update && \
+                     apt -y install \
+                         sudo \
+                         make \
+                         gnupg && \
+                     cd /tmp/Dotfile-tools && \
+                     make ansible && \
+                     make test"
+
+    elif [ "$BUILD_CFG" == "arch" ]; then
+        docker run \
+            --rm \
+            -v $PWD:/tmp/Dotfile-tools \
+            alekzonder/archlinux-yaourt:latest \
+            bash -c "pacman --noconfirm -Syu \
+                         sudo \
+                         which \
+                         gawk \
+                         python \
+                         make && \
+                     cd /tmp/Dotfile-tools && \
+                     sudo -u yaourt bash -c 'cd /tmp/Dotfile-tools && make ansible && make test'"
+    fi
 
 after_success:
   - curl -iX GET "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHATID&text=Dotfile-tools $BUILD_CFG OK" 2>&1 >/dev/null

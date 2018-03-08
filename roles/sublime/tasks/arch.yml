@@ -2,11 +2,13 @@
 - name: Install trizen
   shell: |
     yaourt -S --noconfirm --needed trizen
+  become: no
 
 - name: Install sublime for arch
   shell: |
     trizen -S --needed --noconfirm \
     sublime-text-dev
+  become: no
 
 - name: Install sublime dependencies for arch
   package: name={{ item }} state=latest

@@ -3,6 +3,7 @@
 - name: Install trizen
   shell: |
     yaourt -S --noconfirm --needed trizen
+  become: no
 
 - name: Install arch dependencies via trizen
   shell: |
@@ -17,3 +18,4 @@
         rambox-bin \
         spotify \
         wxhexeditor-git
+  become: no

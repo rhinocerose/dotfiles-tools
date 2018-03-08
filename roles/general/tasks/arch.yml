@@ -4,6 +4,7 @@
   package: name={{ item }} state=latest
   with_items:
     - chromium
+    - perl
     - termite
     - termite-terminfo
     - xorg-xbacklight
@@ -14,11 +15,19 @@
 - name: Install trizen
   shell: |
     yaourt -S --noconfirm --needed trizen
+  become: no
+
+- name: Get PGP key for cower
+  shell: |
+     gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
+  become: no
 
 - name: Install arch dependencies via trizen
   shell: |
+    source /etc/profile && \
     trizen -S --noconfirm --needed \
       cower \
       network-manager-applet \
       polybar \
       ttf-hack \
+  become: no
