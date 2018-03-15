@@ -24,16 +24,16 @@ update-dotfiles: ## Update the dotfiles
 ansible: ## Install ansible
 	if which pacman; then \
 		sudo pacman --noconfirm -S ansible; \
-	elif which apt-add-repository; then \
-		sudo apt-add-repository -y ppa:ansible/ansible && \
-		sudo apt-get update && \
-		sudo apt-get install -y ansible; \
 	elif [[ $$(cat /etc/os-release  | grep debian | wc -l) -gt 0 ]]; then \
 		sudo echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list && \
 		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367 && \
 		sudo apt-get update && \
 		sudo apt-get -y install ansible; \
-	fi
+	elif which apt-add-repository; then \
+		sudo apt-add-repository -y ppa:ansible/ansible && \
+		sudo apt-get update && \
+		sudo apt-get install -y ansible; \
+fi
 
 
 test: ## Perform travis tests
