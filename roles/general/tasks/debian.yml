@@ -14,6 +14,7 @@
     - libcurl4-openssl-dev
     - libiw-dev
     - libmpdclient-dev
+    - libssl-dev
     - libxcb-ewmh-dev
     - libxcb-icccm4-dev
     - libxcb-image0-dev

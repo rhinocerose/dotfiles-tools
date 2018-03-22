@@ -9,6 +9,7 @@
     - fonts-hack-ttf
     - gvfs-bin
     - i3
+    - libssl-dev
     - network-manager-gnome
     - python-pygments
     - software-properties-common

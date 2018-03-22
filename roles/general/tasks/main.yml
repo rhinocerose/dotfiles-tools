@@ -42,6 +42,10 @@
     - python3-pip
   when: ansible_distribution != "Archlinux"
 
+- name: Update pip packages
+  shell: |
+    pip2 install -U pip && pip3 install -U pip
+
 - name: Install pip2 dependencies
   pip:
     name: i3ipc
