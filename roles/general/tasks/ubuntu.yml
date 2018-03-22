@@ -57,13 +57,13 @@
 
 - name: Install playerctl
   shell: |
-    cd /tmp
-    curl https://api.github.com/repos/acrisci/playerctl/releases/latest | \
-      grep "browser_download_url" | \
-      grep "amd64.deb" | \
-      cut -d : -f 2,3 | \
-      tr --delete \" | \
-      tr --delete " " | \
-      wget -O /tmp/playerctl.deb -i - && \
+    cd /tmp && \
+    bash -c "curl https://api.github.com/repos/acrisci/playerctl/releases/latest | \
+      grep 'browser_download_url' | \
+      grep 'amd64.deb' | \
+      cut -d ':' -f 2,3 | \
+      tr --delete '\"' | \
+      tr --delete ' ' | \
+      wget -O /tmp/playerctl.deb -i -" && \
     dpkg -i /tmp/playerctl.deb && \
     rm /tmp/playerctl.deb
