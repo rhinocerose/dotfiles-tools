@@ -74,6 +74,12 @@
   become_user: root
   become_method: sudo
 
+- name: Make sure the SSH config for the user exists
+  copy:
+    content: ""
+    dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
+    force: no
+
 - name: Delete SSH config symlink for root and replace it with a regular file (Copy)
   copy:
     remote_src: True
