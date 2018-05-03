@@ -66,19 +66,19 @@
   become_user: root
   become_method: sudo
 
-- name: Delete SSH config symlink for root and replace it with a regular file: Remove
+- name: Delete SSH config symlink for root and replace it with a regular file (Remove)
   file:
-     path: "/root/.ssh/config"
-     state: absent
+    path: "/root/.ssh/config"
+    state: absent
   become: yes
   become_user: root
   become_method: sudo
 
-- name: Delete SSH config symlink for root and replace it with a regular file: Copy
+- name: Delete SSH config symlink for root and replace it with a regular file (Copy)
   copy:
-     remote_src: True
-     src: "{{ lookup('env', 'HOME') }}/.ssh/config"
-     dest: /root/.ssh/.config
+    remote_src: True
+    src: "{{ lookup('env', 'HOME') }}/.ssh/config"
+    dest: /root/.ssh/.config
   become: yes
   become_user: root
   become_method: sudo
