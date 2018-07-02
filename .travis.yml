@@ -10,7 +10,7 @@ env:
 script:
   - |
       if [ "$BUILD_CFG" == "ubuntu-multiuser" ]; then
-          docker run \
+          travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
               ubuntu:latest \
@@ -27,7 +27,7 @@ script:
                                   sudo make test'"
 
       elif [ "$BUILD_CFG" == "ubuntu" ]; then
-          docker run \
+          travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
               ubuntu:latest \
@@ -40,7 +40,7 @@ script:
                        make test"
 
       elif [ "$BUILD_CFG" == "debian" ]; then
-          docker run \
+          travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
               debian:latest \
@@ -54,7 +54,7 @@ script:
                        make test"
 
       elif [ "$BUILD_CFG" == "arch" ]; then
-          docker run \
+          travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
               alekzonder/archlinux-yaourt:latest \
