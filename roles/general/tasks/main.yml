@@ -54,7 +54,7 @@
 
 - name: Install pip3 dependencies
   pip:
-    name: i3ipc
+    name: pipenv i3ipc
     executable: pip3
 
 - include_tasks: arch.yml
