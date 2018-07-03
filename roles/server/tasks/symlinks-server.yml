@@ -43,6 +43,7 @@
     - { src: "nanorc-folder", dst: ".nano" }
     - { src: "nvim/init.vim", dst: ".config/nvim/init.vim" }
     - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
+    - { src: "ranger", dst: ".config/ranger" }
     - { src: "vim/colors", dst: ".vim/colors" }
     - { src: "vim/snippets", dst: ".vim/snippets" }
     - { src: "vim-vundle", dst: ".vim/bundle/Vundle.vim" }

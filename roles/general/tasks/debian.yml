@@ -14,7 +14,6 @@
     - libcurl4-openssl-dev
     - libiw-dev
     - libmpdclient-dev
-    - libssl-dev
     - libxcb-ewmh-dev
     - libxcb-icccm4-dev
     - libxcb-image0-dev
@@ -28,6 +27,7 @@
     - python-xcbgen
     - python-pygments
     - update-notifier
+    - w3m-img
     - x11-utils
     - x11-xserver-utils
     - xbacklight
@@ -74,14 +74,13 @@
 
 - name: Install playerctl
   shell: |
-    cd /tmp && \
+    cd /tmp
     curl https://api.github.com/repos/acrisci/playerctl/releases/latest | \
-      grep 'browser_download_url' | \
-      grep 'amd64.deb' | \
-      cut -d ':' -f 2,3 | \
-      tr --delete '\"' | \
-      tr --delete ' ' | \
+      grep "browser_download_url" | \
+      grep "amd64.deb" | \
+      cut -d : -f 2,3 | \
+      tr --delete \" | \
+      tr --delete " " | \
       wget -O /tmp/playerctl.deb -i - && \
     dpkg -i /tmp/playerctl.deb && \
     rm /tmp/playerctl.deb
-

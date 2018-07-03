@@ -14,6 +14,7 @@
     - python-pygments
     - software-properties-common
     - update-notifier
+    - w3m-img
     - x11-utils
     - x11-xserver-utils
     - xbacklight
