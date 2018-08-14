@@ -1,0 +1,7 @@
+---
+
+- name: Install arch dependencies via trizen
+  shell: |
+    trizen -S --noconfirm --needed \
+        visual-studio-code-bin
+  become: no

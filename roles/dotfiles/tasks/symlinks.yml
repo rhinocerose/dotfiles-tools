@@ -20,7 +20,6 @@
     - "/etc/fonts"
     - "{{ dstBase }}/.config/gconf/apps"
     - "{{ dstBase }}/.config/nvim"
-    - "{{ dstBase }}/.config/sublime-text-3/Packages"
     - "{{ dstBase }}/.i3"
     - "{{ dstBase }}/.ssh"
     - "{{ dstBase }}/.vim"

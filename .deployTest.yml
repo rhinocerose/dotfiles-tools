@@ -5,5 +5,5 @@
   roles:
     - { role: dotfiles }
     - { role: general, become: yes }
-    - { role: sublime, become: yes }
+    - { role: vscode, become: yes }
     - { role: vim, become: yes }
