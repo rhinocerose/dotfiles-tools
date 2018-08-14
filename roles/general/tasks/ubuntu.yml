@@ -3,6 +3,7 @@
 - name: Install ubuntu dependencies via apt-get
   package: name={{ item }} state=latest
   with_items:
+    - apt-transport-https
     - chromium-browser
     - chromium-browser-l10n
     - chromium-codecs-ffmpeg

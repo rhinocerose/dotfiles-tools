@@ -3,6 +3,7 @@
 - name: Install debian dependencies via apt-get
   package: name={{ item }} state=latest
   with_items:
+    - apt-transport-https
     - chromium
     - cmake
     - cmake-data
