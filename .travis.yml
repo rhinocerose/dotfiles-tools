@@ -13,7 +13,7 @@ script:
           travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
-              ubuntu:latest \
+              ubuntu:rolling \
               bash -c "useradd -ms /bin/bash joe && \
                        usermod -aG sudo joe && \
                        apt update && \
@@ -30,7 +30,7 @@ script:
           travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
-              ubuntu:latest \
+              ubuntu:rolling \
               bash -c "apt update && \
                        apt -y install \
                            sudo \

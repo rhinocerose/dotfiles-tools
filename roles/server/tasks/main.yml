@@ -6,6 +6,7 @@
     state: latest
   with_items:
     - git
+    - ranger
     - zsh
 
 - include_tasks: ubuntu-server.yml
@@ -13,7 +14,7 @@
 
 - name: Clone Dotfiles repo
   git:
-    repo: 'https://github.com/0xBANANA/Dotfiles.git'
+    repo: 'https://github.com/ps1337/Dotfiles.git'
     dest: ~/.dotfiles
     update: yes
     recursive: yes

@@ -7,8 +7,10 @@
     - chromium-browser
     - chromium-browser-l10n
     - chromium-codecs-ffmpeg
+    - cmake
     - fonts-hack-ttf
     - gvfs-bin
+    - gcc
     - i3
     - libssl-dev
     - network-manager-gnome
@@ -21,13 +23,42 @@
     - xbacklight
     - zsh-common
 
-- name: Install polybar for ubuntu
-  shell: |
-    wget -q -O - http://archive.getdeb.net/getdeb-archive.key | apt-key add - && \
-    sh -c 'echo "deb http://archive.getdeb.net/ubuntu xenial-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list' && \
-    apt-get update && \
-    apt-get -y install polybar
+- name: Install polybar ubuntu dependencies via apt-get
+  package: name={{ item }} state=latest
+  with_items:
+    - cmake
+    - cmake-data
+    - pkg-config
+    - libcairo2-dev
+    - libxcb1-dev
+    - libxcb-util0-dev
+    - libxcb-randr0-dev
+    - python-xcbgen
+    - xcb-proto
+    - libxcb-image0-dev
+    - libxcb-ewmh-dev
+    - libxcb-icccm4-dev
+    - libxcb-xkb-dev
+    - libxcb-xrm-dev
+    - libxcb-cursor-dev
+    - libasound2-dev
+    - libpulse-dev
+    - i3-wm
+    - libjsoncpp-dev
+    - libmpdclient-dev
+    - libcurl4-openssl-dev
+    - libiw-dev
+    - libnl-3-dev
 
+- name: Install polybar
+  shell: |
+    if ! which polybar; then
+    mkdir -p /tmp/polybar-temp && cd /tmp/polybar-temp && \
+    git clone --recursive https://github.com/jaagr/polybar && \
+    mkdir -p polybar/build && cd polybar/build && \
+    cmake .. && make install && \
+    rm -rf /tmp/polybar-temp
+    fi
 
 - name: Install termite
   shell: |

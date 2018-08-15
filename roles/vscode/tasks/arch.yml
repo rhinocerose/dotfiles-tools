@@ -1,6 +1,6 @@
 ---
 
-- name: Install arch dependencies via trizen
+- name: Install vscode via trizen
   shell: |
     trizen -S --noconfirm --needed \
         visual-studio-code-bin
