@@ -140,6 +140,17 @@
   become_user: root
   become_method: sudo
 
+- name: Check if bitmap fonts need to be enabled manually
+  stat:
+    path: /etc/fonts/conf.d/70-no-bitmaps.conf
+  register: bitmap_result
+
+- name: Enable bitmap fonts
+  file:
+    path: /etc/fonts/conf.d/70-no-bitmaps.conf
+    state: absent
+  when: bitmap_result.stat.exists == True
+
 - name: Recreate fonts cache
   shell: |
     fc-cache -fv
