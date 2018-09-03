@@ -11,15 +11,19 @@
     - dunst
     - feh
     - git
+    - gimp
+    - gparted
     - i3-wm
     - lxappearance
     - nautilus
+    - pass
     - ranger
     - rofi
     - scrot
     - w3m
     - wicd-gtk
     - xclip
+    - xdotool
     - xss-lock
     - zsh
 
@@ -56,7 +60,7 @@
 
 - name: Install pip3 dependencies
   pip:
-    name: pipenv i3ipc
+    name: pipenv i3ipc yapf pylint
     executable: pip3
 
 - include_tasks: arch.yml
