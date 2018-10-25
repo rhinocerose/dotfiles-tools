@@ -54,14 +54,12 @@
     pip2 install -U pip && pip3 install -U pip
 
 - name: Install pip2 dependencies
-  pip:
-    name: i3ipc
-    executable: pip2
+  shell: |
+    pip2 install i3ipc
 
 - name: Install pip3 dependencies
-  pip:
-    name: pipenv i3ipc yapf pylint
-    executable: pip3
+  shell: |
+    pip3 install pipenv i3ipc yapf pylint
 
 - include_tasks: arch.yml
   when: ansible_distribution == "Archlinux"

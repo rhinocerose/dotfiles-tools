@@ -27,6 +27,7 @@
     - pkg-config
     - python-xcbgen
     - python-pygments
+    - silversearcher-ag
     - update-notifier
     - w3m-img
     - x11-utils

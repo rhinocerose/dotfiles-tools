@@ -5,6 +5,7 @@
   with_items:
     - chromium
     - perl
+    - the_silver_searcher
     - termite
     - termite-terminfo
     - xorg-xbacklight

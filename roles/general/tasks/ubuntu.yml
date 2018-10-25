@@ -15,6 +15,7 @@
     - libssl-dev
     - network-manager-gnome
     - python-pygments
+    - silversearcher-ag
     - software-properties-common
     - update-notifier
     - w3m-img
