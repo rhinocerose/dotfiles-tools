@@ -1,14 +1,12 @@
 ---
 
 - name: Install pip2 dependencies for neovim
-  pip:
-    name: neovim msgpack-python jedi ansible-lint autopep8 unidecode future
-    executable: pip2
+  shell: |
+    pip2 install neovim msgpack-python jedi ansible-lint autopep8 unidecode future
 
 - name: Install pip3 dependencies for neovim
-  pip:
-    name: neovim msgpack-python jedi ansible-lint autopep8 future
-    executable: pip3
+  shell: |
+    pip3 install neovim msgpack-python jedi ansible-lint autopep8 future
 
 - include_tasks: arch.yml
   when: ansible_distribution == "Archlinux"
