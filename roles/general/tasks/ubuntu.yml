@@ -50,6 +50,7 @@
     - libcurl4-openssl-dev
     - libiw-dev
     - libnl-3-dev
+    - libxcb-composite0-dev
 
 - name: Install polybar
   shell: |

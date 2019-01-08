@@ -36,6 +36,11 @@
     - xcb-proto
     - zsh-common
 
+- name: Install polybar debian dependencies via apt-get
+  package: name={{ item }} state=latest
+  with_items:
+    - libxcb-composite0-dev
+
 - name: Install polybar
   shell: |
     if ! which polybar; then
