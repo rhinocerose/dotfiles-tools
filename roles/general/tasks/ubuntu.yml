@@ -12,6 +12,7 @@
     - gvfs-bin
     - gcc
     - i3
+    - bc
     - libssl-dev
     - network-manager-gnome
     - python-pygments
