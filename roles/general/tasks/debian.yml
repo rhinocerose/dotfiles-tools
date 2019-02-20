@@ -13,6 +13,7 @@
     - libasound2-dev
     - libcairo2-dev
     - libcurl4-openssl-dev
+    - bc
     - libiw-dev
     - libmpdclient-dev
     - libxcb-ewmh-dev
@@ -69,6 +70,7 @@
     libgnutls28-dev \
     libgirepository1.0-dev \
     libxml2-utils \
+    libtool \
     gperf && \
     echo export LIBRARY_PATH="/usr/include/gtk-3.0:$LIBRARY_PATH" && \
       cd vte-ng && ./autogen.sh && make && make install && \
