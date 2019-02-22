@@ -112,7 +112,7 @@
 
 - name: Copy Font-Awesome font
   copy:
-    src: "~/.dotfiles/fonts/Font-Awesome/use-on-desktop/{{ item.src }}"
+    src: "~/.dotfiles/fonts/Font-Awesome/otfs/{{ item.src }}"
     dest: "/usr/share/fonts/opentype/{{ item.dst }}"
   with_items:
     - { src: "Font Awesome 5 Brands-Regular-400.otf", dst: "FontAwesome5BrandsRegular-400.otf" }
