@@ -15,6 +15,9 @@
     - bc
     - libssl-dev
     - network-manager-gnome
+    - powerline
+    - python-powerline
+    - python3-powerline
     - python-pygments
     - silversearcher-ag
     - software-properties-common

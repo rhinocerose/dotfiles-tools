@@ -5,6 +5,10 @@
   with_items:
     - chromium
     - perl
+    - powerline
+    - powerline-common
+    - python-powerline
+    - python2-powerline
     - the_silver_searcher
     - termite
     - termite-terminfo

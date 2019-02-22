@@ -20,6 +20,7 @@
     - "/etc/fonts"
     - "{{ dstBase }}/.config/gconf/apps"
     - "{{ dstBase }}/.config/nvim"
+    - "{{ dstBase }}/.config/powerline"
     - "{{ dstBase }}/.i3"
     - "{{ dstBase }}/.ssh"
     - "{{ dstBase }}/.vim"
@@ -53,6 +54,7 @@
     - { src: "nanorc-folder", dst: ".nano" }
     - { src: "nvim/init.vim", dst: ".config/nvim/init.vim" }
     - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
+    - { src: "powerline-config", dst: ".config/powerline" }
     - { src: "ranger", dst: ".config/ranger" }
     - { src: "termite", dst: ".config/termite" }
     - { src: "tmux.conf", dst: ".tmux.conf" }

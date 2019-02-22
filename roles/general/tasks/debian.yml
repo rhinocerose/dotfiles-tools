@@ -25,6 +25,9 @@
     - libxcb-xrm-dev
     - libxcb1-dev
     - network-manager-gnome
+    - powerline
+    - python-powerline
+    - python3-powerline
     - pkg-config
     - python-xcbgen
     - python-pygments
