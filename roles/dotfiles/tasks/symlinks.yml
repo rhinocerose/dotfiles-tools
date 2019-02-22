@@ -25,6 +25,7 @@
     - "{{ dstBase }}/.ssh"
     - "{{ dstBase }}/.vim"
     - "{{ dstBase }}/.vim/bundle"
+    - "{{ dstBase }}/.tmux/plugins"
 
 - name: Create Symlinks for public files
   file:
@@ -42,6 +43,7 @@
     - { src: "exports", dst: ".exports" }
     - { src: "fzf", dst: ".fzf" }
     - { src: "fzf.zsh", dst: ".fzf.zsh" }
+    - { src: "gdbinit", dst: ".gdbinit" }
     - { src: "gitignore", dst: ".gitignore" }
     - { src: "gitconfig", dst: ".gitconfig" }
     - { src: "guake", dst: ".config/gconf/apps/guake" }
@@ -57,6 +59,7 @@
     - { src: "powerline-config", dst: ".config/powerline" }
     - { src: "ranger", dst: ".config/ranger" }
     - { src: "termite", dst: ".config/termite" }
+    - { src: "tpm", dst: ".tmux/plugins/tpm" }
     - { src: "tmux.conf", dst: ".tmux.conf" }
     - { src: "vim/colors", dst: ".vim/colors" }
     - { src: "vim/snippets", dst: ".vim/snippets" }
