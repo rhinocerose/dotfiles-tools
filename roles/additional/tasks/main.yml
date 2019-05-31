@@ -8,13 +8,16 @@
 - name: Install arch dependencies via trizen
   shell: |
     trizen -S --noconfirm --needed \
-        clion \
         dspdfviewer \
         etcher \
         google-chrome \
         masterpdfeditor \
+        cherrytree \
+        burpsuite \
+        ttf-ms-fonts \
+        radare2-git \
+        noson-app \
         pdftk \
-        pycharm-professional \
         rambox-bin \
         spotify \
         wxhexeditor-git
