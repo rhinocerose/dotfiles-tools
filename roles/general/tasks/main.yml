@@ -65,10 +65,12 @@
   shell: |
       git clone https://github.com/phillipberndt/autorandr.git /opt/autorandr &&
       cd /opt/autorandr &&
-      make install && pidof /sbin/init &&
+      make install && (pidof /sbin/init | :) &&
       command -v systemctl && systemctl daemon-reload &&
       command -v systemctl && systemctl enable autorandr.service &&
       command -v udevadm && udevadm control --reload-rules
+  args:
+    executable: /bin/bash
 
 - include_tasks: arch.yml
   when: ansible_distribution == "Archlinux"
