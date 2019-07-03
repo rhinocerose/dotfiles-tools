@@ -62,7 +62,7 @@
     pip3 install pipenv i3ipc yapf pylint
 
 - name: Install autorandr
-  command: |
+  shell: |
       git clone https://github.com/phillipberndt/autorandr.git /opt/autorandr &&
       cd /opt/autorandr &&
       make install &&
