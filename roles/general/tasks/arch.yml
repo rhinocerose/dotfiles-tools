@@ -4,11 +4,13 @@
   package: name={{ item }} state=latest
   with_items:
     - chromium
+    - i3lock
     - perl
     - powerline
     - powerline-common
     - python-powerline
     - python2-powerline
+    - playerctl
     - the_silver_searcher
     - termite
     - termite-terminfo
@@ -16,11 +18,11 @@
     - xorg-xev
     - xorg-xprop
     - xorg-xrandr
+    - xorg-xdpyinfo
 
 - name: Install trizen
   shell: |
-    yaourt -S --noconfirm --needed trizen
-  become: no
+    pacman -S --noconfirm trizen
 
 - name: Get PGP key for cower
   shell: |
@@ -35,4 +37,9 @@
       network-manager-applet \
       polybar \
       ttf-hack \
+      pulseaudio-bluetooth-a2dp-gdm-fix \
+      fix-bt-a2dp \
+      pulseaudio-modules-bt-git \
+      libldac \
+      antibody
   become: no

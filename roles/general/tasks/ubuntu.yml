@@ -107,3 +107,16 @@
       wget -O /tmp/playerctl.deb -i - && \
     dpkg -i /tmp/playerctl.deb && \
     rm /tmp/playerctl.deb
+
+- name: Install antibody
+  shell: |
+    curl -sSL \
+        $(curl -sSL https://api.github.com/repos/getantibody/antibody/releases/latest | \
+        grep "browser_download_url" | \
+        grep "amd64.deb" | \
+        cut -d ":" -f 2,3 | \
+        tr --delete \" | \
+        tr --delete " ") \
+   -o /tmp/antibody.deb && \
+   dpkg -i /tmp/antibody.deb && \
+   rm /tmp/antibody.deb

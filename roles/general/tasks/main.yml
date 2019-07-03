@@ -61,6 +61,15 @@
   shell: |
     pip3 install pipenv i3ipc yapf pylint
 
+- name: Install autorandr
+  command: |
+      git clone https://github.com/phillipberndt/autorandr.git /opt/autorandr &&
+      cd /opt/autorandr &&
+      make install &&
+      systemctl daemon-reload &&
+      systemctl enable autorandr.service &&
+      udevadm control --reload-rules
+
 - include_tasks: arch.yml
   when: ansible_distribution == "Archlinux"
 

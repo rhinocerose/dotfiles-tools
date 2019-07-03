@@ -22,9 +22,11 @@ script:
                            make && \
                        echo 'joe ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
                        su joe -c 'cd /tmp/Dotfile-tools && \
-                                  sudo make ansible' && \
+                       sudo make ansible' && \
                        su joe -c 'cd /tmp/Dotfile-tools && \
-                                  sudo make test'"
+                       touch /bin/systemctl /bin/udevadm && \
+                       chmod +x /bin/systemctl && chmod +x /bin/udevadm && \
+                       sudo make test'"
 
       elif [ "$BUILD_CFG" == "ubuntu" ]; then
           travis_retry docker run \
@@ -37,6 +39,8 @@ script:
                            make && \
                        cd /tmp/Dotfile-tools && \
                        make ansible && \
+                       touch /bin/systemctl /bin/udevadm && \
+                       chmod +x /bin/systemctl && chmod +x /bin/udevadm && \
                        make test"
 
       elif [ "$BUILD_CFG" == "debian" ]; then
@@ -51,6 +55,8 @@ script:
                            gnupg && \
                        cd /tmp/Dotfile-tools && \
                        make ansible && \
+                       touch /bin/systemctl /bin/udevadm && \
+                       chmod +x /bin/systemctl && chmod +x /bin/udevadm && \
                        make test"
 
       elif [ "$BUILD_CFG" == "arch" ]; then
@@ -64,6 +70,8 @@ script:
                            gawk \
                            python \
                            make && \
+                       touch /bin/systemctl /bin/udevadm && \
+                       chmod +x /bin/systemctl && chmod +x /bin/udevadm && \
                        cd /tmp/Dotfile-tools && \
                        sudo -u yaourt bash -c 'cd /tmp/Dotfile-tools && make ansible && make test'"
       fi

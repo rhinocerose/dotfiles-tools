@@ -66,6 +66,18 @@
   become_user: root
   become_method: sudo
 
+- name: Set ZSH shell for user
+  command: |
+    chsh -s /usr/bin/zsh
+
+
+- name: Set ZSH shell for root
+  command: |
+    chsh -s /usr/bin/zsh
+  become: yes
+  become_user: root
+  become_method: sudo
+
 - name: Delete SSH config symlink for root and replace it with a regular file (Remove)
   file:
     path: "/root/.ssh/config"

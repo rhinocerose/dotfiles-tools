@@ -1,15 +1,4 @@
 ---
-- name: Make sure oh-my-zsh is cloned
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh
-    dest: "{{ dstBase }}/.oh-my-zsh"
-    update: no
-    force: no
-
-- name: Remove old custom folder from oh-my-zsh
-  file:
-    state: absent
-    path: "{{ dstBase }}/.oh-my-zsh/custom"
 
 - name: Make sure the required folders are present
   file:
@@ -34,6 +23,8 @@
     force: yes
   with_items:
     - { src: "aliases", dst: ".aliases" }
+    - { src: "antibody_bundle", dst: ".antibody_bundle" }
+    - { src: "autorandr", dst: ".config/autorandr" }
     - { src: "bash_profile", dst: ".bash_profile" }
     - { src: "bashrc", dst: ".bashrc" }
     - { src: "bindings", dst: ".bindings" }
@@ -54,8 +45,8 @@
     - { src: "nanorc", dst: ".nanorc" }
     - { src: "nanorc-folder", dst: ".nano" }
     - { src: "nvim/init.vim", dst: ".config/nvim/init.vim" }
-    - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
     - { src: "powerline-config", dst: ".config/powerline" }
+    - { src: "powerline/powerline/bindings/tmux/powerline.conf", dst: ".powerline.conf" }
     - { src: "ranger", dst: ".config/ranger" }
     - { src: "termite", dst: ".config/termite" }
     - { src: "tpm", dst: ".tmux/plugins/tpm" }
@@ -65,6 +56,8 @@
     - { src: "vim-vundle", dst: ".vim/bundle/Vundle.vim" }
     - { src: "vimrc", dst: ".vimrc" }
     - { src: "xmodmap", dst: ".Xmodmap" }
+    - { src: "xinitrc", dst: ".xinitrc" }
+    - { src: "xresources", dst: ".Xresources" }
     - { src: "zshrc", dst: ".zshrc" }
 
 - include_tasks: "{{ srcBase }}/.dotfiles/{{ secrets_config }}/tasks.yml"

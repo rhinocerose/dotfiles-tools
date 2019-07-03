@@ -2,8 +2,7 @@
 
 - name: Install trizen
   shell: |
-    yaourt -S --noconfirm --needed trizen
-  become: no
+    pacman -S --noconfirm trizen
 
 - name: Install arch dependencies via trizen
   shell: |
@@ -17,7 +16,6 @@
         ttf-ms-fonts \
         radare2-git \
         noson-app \
-        pdftk \
         rambox-bin \
         spotify \
         wxhexeditor-git
