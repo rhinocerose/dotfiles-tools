@@ -65,7 +65,7 @@
   shell: |
       git clone https://github.com/phillipberndt/autorandr.git /opt/autorandr &&
       cd /opt/autorandr &&
-      make install &&
+      make install && pidof /sbin/init &&
       command -v systemctl && systemctl daemon-reload &&
       command -v systemctl && systemctl enable autorandr.service &&
       command -v udevadm && udevadm control --reload-rules
