@@ -41,5 +41,6 @@
       fix-bt-a2dp \
       pulseaudio-modules-bt-git \
       libldac \
-      antibody
+      antibody \
+      alttab-git
   become: no

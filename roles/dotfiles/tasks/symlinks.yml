@@ -48,6 +48,7 @@
     - { src: "powerline-config", dst: ".config/powerline" }
     - { src: "powerline/powerline/bindings/tmux/powerline.conf", dst: ".powerline.conf" }
     - { src: "ranger", dst: ".config/ranger" }
+    - { src: "radare2rc", dst: ".radare2rc" }
     - { src: "termite", dst: ".config/termite" }
     - { src: "tpm", dst: ".tmux/plugins/tpm" }
     - { src: "tmux.conf", dst: ".tmux.conf" }
