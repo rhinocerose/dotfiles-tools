@@ -54,7 +54,7 @@
     - { src: "tmux.conf", dst: ".tmux.conf" }
     - { src: "vim/colors", dst: ".vim/colors" }
     - { src: "vim/snippets", dst: ".vim/snippets" }
-    - { src: "vim-vundle", dst: ".vim/bundle/Vundle.vim" }
+    - { src: "vim-plug", dst: ".vim/bundle/vim-plug" }
     - { src: "vimrc", dst: ".vimrc" }
     - { src: "xmodmap", dst: ".Xmodmap" }
     - { src: "xinitrc", dst: ".xinitrc" }
