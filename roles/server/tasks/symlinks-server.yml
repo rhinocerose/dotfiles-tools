@@ -19,6 +19,7 @@
   with_items:
     - "{{ dstBase }}/.vim"
     - "{{ dstBase }}/.vim/bundle"
+    - "{{ dstBase }}/.vim/autoload"
     - "{{ dstBase }}/.config/nvim"
 
 - name: Create Symlinks for public files
@@ -47,6 +48,7 @@
     - { src: "vim/colors", dst: ".vim/colors" }
     - { src: "vim/snippets", dst: ".vim/snippets" }
     - { src: "vim-plug", dst: ".vim/bundle/vim-plug" }
+    - { src: "vim-plug/plug.vim", dst: ".vim/autoload/plug.vim" }
     - { src: "vimrc", dst: ".vimrc" }
     - { src: "zshrc", dst: ".zshrc" }
 
