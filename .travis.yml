@@ -65,7 +65,7 @@ script:
                            python \
                            make && \
                        cd /tmp/Dotfile-tools && \
-                       sudo -u aur bash -c 'pacman -Sy && cd /tmp/Dotfile-tools && make ansible && make test'"
+                       sudo -u aur bash -c 'yes Y | pacman -Sy --noconfirm && cd /tmp/Dotfile-tools && make ansible && make test'"
       fi
 
 after_success:
