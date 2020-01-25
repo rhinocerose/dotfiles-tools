@@ -58,14 +58,14 @@ script:
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
               cognexa/archlinux:latest \
-              bash -c "pacman --noconfirm -Syu \
+              bash -c "yes Y | pacman --noconfirm -Sy \
                            sudo \
                            which \
                            gawk \
                            python \
                            make && \
                        cd /tmp/Dotfile-tools && \
-                       sudo -u aur bash -c 'yes Y | pacman -Sy --noconfirm && cd /tmp/Dotfile-tools && make ansible && make test'"
+                       sudo -u aur bash -c 'cd /tmp/Dotfile-tools && make ansible && make test'"
       fi
 
 after_success:
