@@ -10,6 +10,14 @@
     - python
     - python-pip
 
+- name: Installing Arch packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gcc
+    - clang
+
 - name: Installing trizen (Arch)
   shell: |
     command -v trizen || pacman -S --noconfirm trizen

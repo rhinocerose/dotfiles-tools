@@ -11,7 +11,7 @@
     - python3-pip
   when: ansible_distribution != "Archlinux"
 
-- name: Install minimal packages (Ubuntu)
+- name: Install minimal packages (Ubuntu/Debian)
   package:
     name: "{{ item }}"
     state: latest
@@ -23,6 +23,8 @@
     - silversearcher-ag
     - powerline
     - python3-powerline
+    - gcc
+    - g++
 
 - name: Install antibody
   shell: |

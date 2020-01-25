@@ -13,8 +13,6 @@
     - tmux
     - cmake
     - zsh
-    - gcc
-    - g++
 
 - include_tasks: ubuntu-debian-minimal.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
