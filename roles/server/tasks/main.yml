@@ -8,6 +8,35 @@
     - git
     - ranger
     - zsh
+    - wget
+    - curl
+    - tmux
+    - cmake
+    - zsh
+    - gcc
+    - g++
+
+- name: Installing python (Arch)
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python2
+    - python2-pip
+    - python
+    - python-pip
+  when: ansible_distribution == "Archlinux"
+
+- name: Installing python (Debian/Ubuntu)
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python2.7
+    - python-pip
+    - python3
+    - python3-pip
+  when: ansible_distribution != "Archlinux"
 
 - include_tasks: ubuntu-server.yml
   when: ansible_distribution == "Ubuntu"
