@@ -38,3 +38,8 @@
 
 - include_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
+
+- name: Install vim Plugins
+  shell: |
+    /usr/bin/nvim -c ':PlugUpdate' -c 'qa!'
+  become: no

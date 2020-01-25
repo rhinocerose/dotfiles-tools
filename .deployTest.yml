@@ -3,7 +3,4 @@
   connection: local
 
   roles:
-    - { role: dotfiles }
-    - { role: general, become: yes }
-    - { role: vscode, become: yes }
-    - { role: vim, become: yes }
+    - { role: minimal }

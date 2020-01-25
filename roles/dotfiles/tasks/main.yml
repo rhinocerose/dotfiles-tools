@@ -66,6 +66,33 @@
   become_user: root
   become_method: sudo
 
+- name: Install antibody
+  shell: |
+    source /etc/profile && \
+    trizen -S --noconfirm --needed \
+      antibody \
+  become: no
+  when: ansible_distribution == "Archlinux"
+
+- name: Install antibody
+  shell: |
+    curl -sSL \
+        $(curl -sSL https://api.github.com/repos/getantibody/antibody/releases/latest | \
+        grep "browser_download_url" | \
+        grep "amd64.deb" | \
+        cut -d ":" -f 2,3 | \
+        tr --delete \" | \
+        tr --delete " ") \
+     -o /tmp/antibody.deb && \
+     dpkg -i /tmp/antibody.deb && \
+     rm /tmp/antibody.deb
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Update shell plugins with antibody
+  shell: |
+    antibody update
+  become: no
+
 - name: Delete SSH config symlink for root and replace it with a regular file (Remove)
   file:
     path: "/root/.ssh/config"

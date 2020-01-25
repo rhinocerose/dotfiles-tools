@@ -16,30 +16,11 @@
     - gcc
     - g++
 
-- name: Installing python (Arch)
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - python2
-    - python2-pip
-    - python
-    - python-pip
+- include_tasks: ubuntu-debian-minimal.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- include_tasks: arch-minimal.yml
   when: ansible_distribution == "Archlinux"
-
-- name: Installing python (Debian/Ubuntu)
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - python2.7
-    - python-pip
-    - python3
-    - python3-pip
-  when: ansible_distribution != "Archlinux"
-
-- include_tasks: ubuntu-server.yml
-  when: ansible_distribution == "Ubuntu"
 
 - name: Clone Dotfiles repo
   git:
@@ -62,7 +43,7 @@
   args:
     chdir: ~/.dotfiles
 
-- import_tasks: symlinks-server.yml
+- import_tasks: symlinks-minimal.yml
   vars:
     srcBase: "/root"
     dstBase: "/root"
@@ -70,6 +51,11 @@
 - name: Install fzf
   shell: |
     echo "yyn" | ~/.dotfiles/fzf/install
+
+- name: Update shell plugins with antibody
+  shell: |
+    antibody update
+  become: no
 
 - name: Call vim role
   include_role:
