@@ -59,7 +59,8 @@ script:
               -v $PWD:/tmp/Dotfile-tools \
               cognexa/archlinux:latest \
               bash -c "sed -i 's/Required DatabaseOptional/Never/g' /etc/pacman.conf && \
-                       yes Y | pacman --noconfirm -Sy \
+                       yes Y | pacman --noconfirm -Syu && \
+                       yes Y | pacman -S --noconfirm \
                            sudo \
                            which \
                            gawk \
