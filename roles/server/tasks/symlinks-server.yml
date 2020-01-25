@@ -1,15 +1,4 @@
 ---
-- name: Make sure oh-my-zsh is cloned
-  git:
-    repo=https://github.com/robbyrussell/oh-my-zsh
-    dest=~/.oh-my-zsh
-    update=no
-    force=no
-
-- name: Remove old custom folder from oh-my-zsh
-  file:
-    state: absent
-    path: ~/.oh-my-zsh/custom
 
 - name: Make sure the required folders are present
   file:
@@ -21,6 +10,8 @@
     - "{{ dstBase }}/.vim/bundle"
     - "{{ dstBase }}/.vim/autoload"
     - "{{ dstBase }}/.config/nvim"
+    - "{{ dstBase }}/.ssh"
+    - "{{ dstBase }}/.tmux/plugins"
 
 - name: Create Symlinks for public files
   file:
@@ -30,6 +21,7 @@
     force: yes
   with_items:
     - { src: "aliases", dst: ".aliases" }
+    - { src: "antibody_bundle", dst: ".antibody_bundle" }
     - { src: "bash_profile", dst: ".bash_profile" }
     - { src: "bashrc", dst: ".bashrc" }
     - { src: "bindings", dst: ".bindings" }
@@ -37,15 +29,20 @@
     - { src: "exports", dst: ".exports" }
     - { src: "fzf", dst: ".fzf" }
     - { src: "fzf.zsh", dst: ".fzf.zsh" }
+    - { src: "gdbinit", dst: ".gdbinit" }
     - { src: "gitconfig", dst: ".gitconfig" }
     - { src: "gitignore", dst: ".gitignore" }
     - { src: "inputrc", dst: ".inputrc" }
     - { src: "nanorc", dst: ".nanorc" }
     - { src: "nanorc-folder", dst: ".nano" }
     - { src: "nvim/init.vim", dst: ".config/nvim/init.vim" }
-    - { src: "oh-my-zsh-custom", dst: ".oh-my-zsh/custom" }
+    - { src: "powerline-config", dst: ".config/powerline" }
+    - { src: "powerline/powerline/bindings/tmux/powerline.conf", dst: ".powerline.conf" }
     - { src: "ranger", dst: ".config/ranger" }
+    - { src: "radare2rc", dst: ".radare2rc" }
     - { src: "vim/colors", dst: ".vim/colors" }
+    - { src: "tpm", dst: ".tmux/plugins/tpm" }
+    - { src: "tmux.conf", dst: ".tmux.conf" }
     - { src: "vim/snippets", dst: ".vim/snippets" }
     - { src: "vim-plug", dst: ".vim/bundle/vim-plug" }
     - { src: "vim-plug/plug.vim", dst: ".vim/autoload/plug.vim" }
