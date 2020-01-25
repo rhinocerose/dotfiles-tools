@@ -25,6 +25,7 @@
     - { src: "bash_profile", dst: ".bash_profile" }
     - { src: "bashrc", dst: ".bashrc" }
     - { src: "bindings", dst: ".bindings" }
+    - { src: "bindings_fzf", dst: ".bindings_fzf" }
     - { src: "dockerfunc", dst: ".dockerfunc" }
     - { src: "exports", dst: ".exports" }
     - { src: "fzf", dst: ".fzf" }

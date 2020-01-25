@@ -28,6 +28,7 @@
     - { src: "autorandr", dst: ".config/autorandr" }
     - { src: "bash_profile", dst: ".bash_profile" }
     - { src: "bashrc", dst: ".bashrc" }
+    - { src: "bindings_fzf", dst: ".bindings_fzf" }
     - { src: "bindings", dst: ".bindings" }
     - { src: "dockerfunc", dst: ".dockerfunc" }
     - { src: "dunst", dst: ".config/dunst" }
