@@ -12,7 +12,7 @@
 
 - name: Installing trizen (Arch)
   shell: |
-    pacman -S --noconfirm trizen
+    command -v trizen || pacman -S --noconfirm trizen
   become: no
 
 - name: Install antibody

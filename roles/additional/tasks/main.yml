@@ -2,7 +2,7 @@
 
 - name: Install trizen
   shell: |
-    pacman -S --noconfirm trizen
+    command -v trizen || pacman -S --noconfirm trizen
 
 - name: Install arch dependencies via trizen
   shell: |
