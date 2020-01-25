@@ -57,7 +57,7 @@ script:
           travis_retry docker run \
               --rm \
               -v $PWD:/tmp/Dotfile-tools \
-              cognexa/archlinux:latest:latest \
+              cognexa/archlinux:latest \
               bash -c "pacman --noconfirm -Syu \
                            sudo \
                            which \
