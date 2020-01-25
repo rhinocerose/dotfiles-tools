@@ -54,7 +54,7 @@
 
 - name: Update shell plugins with antibody
   shell: |
-    antibody update
+    antibody bundle < "$HOME/.antibody_bundle" > "$HOME/.zsh_plugins.sh"
   become: no
 
 - name: Call vim role
