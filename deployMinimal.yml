@@ -8,4 +8,4 @@
       private: no
 
   roles:
-    - { role: server }
+    - { role: minimal }

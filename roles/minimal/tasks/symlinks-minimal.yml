@@ -50,3 +50,4 @@
     - { src: "zshrc", dst: ".zshrc" }
 
 - include_tasks: "{{ srcBase }}/.dotfiles/shared-secrets/tasks.yml"
+  when: shared_repo_url is defined

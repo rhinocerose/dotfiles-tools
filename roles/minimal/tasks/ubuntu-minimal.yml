@@ -5,10 +5,6 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - python2.7
-    - python-pip
-    - python3
-    - python3-pip
     - python-pygments
     - ranger
     - w3m

@@ -1,3 +1,5 @@
+---
+
 - name: Install neovim for debian
   package: name={{ item }} state=latest
   with_items:

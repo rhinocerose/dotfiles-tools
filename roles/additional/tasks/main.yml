@@ -7,11 +7,9 @@
 - name: Install arch dependencies via trizen
   shell: |
     trizen -S --noconfirm --needed \
-        dspdfviewer \
         etcher \
         google-chrome \
-        masterpdfeditor \
-        cherrytree \
+        masterpdfeditor-free \
         burpsuite \
         ttf-ms-fonts \
         radare2-git \

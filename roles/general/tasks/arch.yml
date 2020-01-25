@@ -20,10 +20,7 @@
     - xorg-xprop
     - xorg-xrandr
     - xorg-xdpyinfo
-
-- name: Install trizen (with test for CI)
-  shell: |
-    pacman -S --noconfirm trizen || su yaourt -c "yaourt -S --noconfirm trizen"
+    - trizen
 
 - name: Get PGP key for cower
   shell: |
