@@ -8,6 +8,7 @@
     - curl
     - fontconfig
     - git
+    - tar
     - wget
   become: yes
   become_method: sudo
